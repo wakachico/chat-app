@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @user_index = User.where.not(id: current_user.id)
   end
 
   def create
