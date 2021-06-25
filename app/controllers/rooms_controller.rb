@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    @user_index = User.where.not(id: current_user.id)
   end
 
   def create
@@ -14,6 +15,12 @@ class RoomsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    room = Room.find(params[:id])
+    room.destroy
+    redirect_to root_path
   end
 
   private
